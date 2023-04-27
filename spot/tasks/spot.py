@@ -27,8 +27,8 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from omniisaacgymenvs.tasks.base.rl_task import RLTask
-from omniisaacgymenvs.robots.articulations.anymal import Anymal
-from omniisaacgymenvs.robots.articulations.views.anymal_view import AnymalView
+from omniisaacgymenvs.robots.articulations.spot import Spot
+from omniisaacgymenvs.robots.articulations.views.spot_view import SpotView
 from omniisaacgymenvs.tasks.utils.usd_utils import set_drive
 
 from omni.isaac.core.utils.prims import get_prim_at_path
@@ -39,8 +39,8 @@ import numpy as np
 import torch
 import math
 
-
-class AnymalTask(RLTask):
+# class AnymalTask(RLTask):
+class SpotTask(RLTask):
     def __init__(
         self,
         name,
@@ -96,7 +96,7 @@ class AnymalTask(RLTask):
             self.rew_scales[key] *= self.dt
 
         self._num_envs = self._task_cfg["env"]["numEnvs"]
-        self._anymal_translation = torch.tensor([0.0, 0.0, 0.62])
+        self._spot_translation = torch.tensor([0.0, 0.0, 0.62])
         self._env_spacing = self._task_cfg["env"]["envSpacing"]
         self._num_observations = 48
         self._num_actions = 12
@@ -104,18 +104,22 @@ class AnymalTask(RLTask):
         RLTask.__init__(self, name, env)
         return
 
+# calls the SpotView - Must have paths for the environment
     def set_up_scene(self, scene) -> None:
         self.get_anymal()
         super().set_up_scene(scene)
-        self._anymals = AnymalView(prim_paths_expr="/World/envs/.*/anymal", name="anymalview")
+        self._anymals = SpotView(prim_paths_expr="/World/envs/.*/anymal", name="anymalview")  #TODO
         scene.add(self._anymals)
         scene.add(self._anymals._knees)
         scene.add(self._anymals._base)
 
         return
 
+# must get Spot def get_anymal(self):
     def get_anymal(self):
-        anymal = Anymal(prim_path=self.default_zero_env_path + "/anymal", name="Anymal", translation=self._anymal_translation)
+        # What is prim_path=self.default_zero_env_path + "/anymal"
+        anymal = Spot(prim_path=self.default_zero_env_path + "/anymal", name="Spot", translation=self._spot_translation)
+        # What is get_prim_at_path(anymal.prim_path) or self._sim_config.parse_actor_config("Anymal")
         self._sim_config.apply_articulation_settings("Anymal", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("Anymal"))
 
         # Configure joint properties

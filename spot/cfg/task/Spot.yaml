@@ -1,5 +1,5 @@
 # used to create the object
-name: Anymal
+name: Spot
 
 physics_engine: ${..physics_engine}
 
@@ -30,20 +30,20 @@ env:
     actionScale: 13.5
 
   defaultJointAngles:  # = target angles when action = 0.0
-    LF_HAA: 0.03    # [rad]
-    LH_HAA: 0.03    # [rad]
-    RF_HAA: -0.03   # [rad]
-    RH_HAA: -0.03   # [rad]
+    front_left_hip_x: 0.03    # [rad] LF_HAA
+    rear_left_hip_x: 0.03    # [rad] LH_HAA
+    front_right_hip_x: -0.03   # [rad] RF_HAA
+    rear_right_hip_x: -0.03   # [rad] RH_HAA
 
-    LF_HFE: 0.4     # [rad]
-    LH_HFE: -0.4    # [rad]
-    RF_HFE: 0.4     # [rad]
-    RH_HFE: -0.4    # [rad]
+    front_left_hip_y: 0.4     # [rad] LF_HFE
+    rear_left_hip_y: -0.4    # [rad] LH_HFE
+    front_right_hip_y: 0.4     # [rad] RF_HFE
+    rear_right_hip_y: -0.4    # [rad] RH_HFE
 
-    LF_KFE: -0.8    # [rad]
-    LH_KFE: 0.8     # [rad]
-    RF_KFE: -0.8    # [rad]
-    RH_KFE: 0.8     # [rad]
+    front_left_knee: -0.8    # [rad] LF_KFE
+    rear_left_knee: 0.8     # [rad] LH_KFE
+    front_right_knee: -0.8    # [rad] RF_KFE
+    rear_right_knee: 0.8     # [rad] RH_KFE
 
   learn:
     # rewards
@@ -106,8 +106,8 @@ sim:
     gpu_heap_capacity: 134217728
     gpu_temp_buffer_capacity: 33554432
     gpu_max_num_partitions: 8
-
-  Anymal:
+# original - Anymal
+  Spot:
     # -1 to use default values
     override_usd_defaults: False
     enable_self_collisions: False

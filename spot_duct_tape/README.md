@@ -1,4 +1,13 @@
 # How to run PPO for Spot
+
+This is a Hacky solution to get Spot training and demo using Anymal OIGE code. With as little modifications as possible.<br/>
+Step 1 - Must Name the Joints on Spot USD file to match the ones in Anymal.<br/>
+Step 2 - Change the name of the files and the Classes so there is no conflict<br/>
+Step 3 - Add the task to utils/task_util.py<br/>
+Step 4 - Change the code to grab the right assets (modify the path)<br/>
+
+Changing the name of the joints fucksup the training algorithm<br/>
+
 Source<br/>
 https://github.com/boredengineering/Robots_for_Omniverse
 

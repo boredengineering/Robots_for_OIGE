@@ -39,11 +39,12 @@ import torch
 
 from pxr import PhysxSchema
 
-class Anymal(Robot):
+# class Anymal(Robot):
+class Spot(Robot):
     def __init__(
         self,
         prim_path: str,
-        name: Optional[str] = "Anymal",
+        name: Optional[str] = "Spot",
         usd_path: Optional[str] = None,
         translation: Optional[np.ndarray] = None,
         orientation: Optional[np.ndarray] = None,
@@ -53,7 +54,7 @@ class Anymal(Robot):
         
         self._usd_path = usd_path
         self._name = name
-
+# Gotta add the path to the Spot asset in USD
         if self._usd_path is None:
             assets_root_path = get_assets_root_path()
             if assets_root_path is None:
@@ -68,19 +69,20 @@ class Anymal(Robot):
             orientation=orientation,
             articulation_controller=None,
         )
-
-        self._dof_names = ["LF_HAA",
-                           "LH_HAA",
-                           "RF_HAA",
-                           "RH_HAA",
-                           "LF_HFE",
-                           "LH_HFE",
-                           "RF_HFE",
-                           "RH_HFE",
-                           "LF_KFE",
-                           "LH_KFE",
-                           "RF_KFE",
-                           "RH_KFE"]
+        # The original dof from Anymal for reference
+        # self._dof_names = ["LF_HAA","LH_HAA","RF_HAA","RH_HAA","LF_HFE","LH_HFE","RF_HFE","RH_HFE","LF_KFE","LH_KFE","RF_KFE", "RH_KFE"]
+        self._dof_names = ["front_left_hip_x",
+                           "rear_left_hip_x",
+                           "front_right_hip_x",
+                           "rear_right_hip_x",
+                           "front_left_hip_y",
+                           "rear_left_hip_y",
+                           "front_right_hip_y",
+                           "rear_right_hip_y",
+                           "front_left_knee",
+                           "rear_left_knee",
+                           "front_right_knee",
+                           "rear_right_knee"]
 
     @property
     def dof_names(self):
