@@ -1,4 +1,4 @@
-name: AnymalTerrain
+name: SpotTerrain
 
 physics_engine: ${..physics_engine}
 

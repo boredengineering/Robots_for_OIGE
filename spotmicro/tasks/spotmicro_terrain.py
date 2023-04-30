@@ -27,8 +27,8 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from omniisaacgymenvs.tasks.base.rl_task import RLTask
-from omniisaacgymenvs.robots.articulations.anymal import Anymal
-from omniisaacgymenvs.robots.articulations.views.anymal_view import AnymalView
+from omniisaacgymenvs.robots.articulations.spotmicro import Spotmicro
+from omniisaacgymenvs.robots.articulations.views.spotmicro_view import SpotmicroView
 from omniisaacgymenvs.tasks.utils.anymal_terrain_generator import *
 from omniisaacgymenvs.utils.terrain_utils.terrain_utils import *
 
@@ -44,7 +44,7 @@ import math
 from pxr import UsdPhysics, UsdLux
 
 
-class AnymalTerrainTask(RLTask):
+class SpotmicroTerrainTask(RLTask):
     def __init__(
         self,
         name,
@@ -194,7 +194,9 @@ class AnymalTerrainTask(RLTask):
         self.get_terrain()
         self.get_anymal()
         super().set_up_scene(scene)
-        self._anymals = AnymalView(prim_paths_expr="/World/envs/.*/anymal", name="anymal_view", track_contact_forces=True)
+        self._anymals = SpotmicroView(prim_paths_expr="/World/envs/.*/spotmicroai", 
+                                      name="spotmicro_view", 
+                                      track_contact_forces=True)
         scene.add(self._anymals)
         scene.add(self._anymals._knees)
         scene.add(self._anymals._base)
@@ -211,11 +213,11 @@ class AnymalTerrainTask(RLTask):
         self.base_init_state = torch.tensor(self.base_init_state, dtype=torch.float, device=self.device, requires_grad=False)
         anymal_translation = torch.tensor([0.0, 0.0, 0.66])
         anymal_orientation = torch.tensor([1.0, 0.0, 0.0, 0.0])
-        anymal = Anymal(prim_path=self.default_zero_env_path + "/anymal", 
-                        name="anymal",
+        anymal = Spotmicro(prim_path=self.default_zero_env_path + "/spotmicroai", 
+                        name="spotmicro",
                         translation=anymal_translation, 
                         orientation=anymal_orientation,)
-        self._sim_config.apply_articulation_settings("anymal", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("anymal"))
+        self._sim_config.apply_articulation_settings("spotmicro", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("spotmicro"))
         anymal.set_anymal_properties(self._stage, anymal.prim)
         anymal.prepare_contacts(self._stage, anymal.prim)
 

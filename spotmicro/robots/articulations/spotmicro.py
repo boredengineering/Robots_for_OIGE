@@ -39,7 +39,7 @@ import torch
 
 from pxr import PhysxSchema
 
-class Anymal(Robot):
+class Spotmicro(Robot):
     def __init__(
         self,
         prim_path: str,

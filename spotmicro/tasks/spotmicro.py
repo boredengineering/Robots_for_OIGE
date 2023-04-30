@@ -27,8 +27,8 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from omniisaacgymenvs.tasks.base.rl_task import RLTask
-from omniisaacgymenvs.robots.articulations.anymal import Anymal
-from omniisaacgymenvs.robots.articulations.views.anymal_view import AnymalView
+from omniisaacgymenvs.robots.articulations.spotmicro import Spotmicro
+from omniisaacgymenvs.robots.articulations.views.spotmicro_view import SpotmicroView
 from omniisaacgymenvs.tasks.utils.usd_utils import set_drive
 
 from omni.isaac.core.utils.prims import get_prim_at_path
@@ -40,7 +40,7 @@ import torch
 import math
 
 
-class AnymalTask(RLTask):
+class SpotmicroTask(RLTask):
     def __init__(
         self,
         name,
@@ -107,7 +107,7 @@ class AnymalTask(RLTask):
     def set_up_scene(self, scene) -> None:
         self.get_anymal()
         super().set_up_scene(scene)
-        self._anymals = AnymalView(prim_paths_expr="/World/envs/.*/anymal", name="anymalview")
+        self._anymals = SpotmicroView(prim_paths_expr="/World/envs/.*/spotmicroai", name="spotmicroview")
         scene.add(self._anymals)
         scene.add(self._anymals._knees)
         scene.add(self._anymals._base)
@@ -115,8 +115,10 @@ class AnymalTask(RLTask):
         return
 
     def get_anymal(self):
-        anymal = Anymal(prim_path=self.default_zero_env_path + "/anymal", name="Anymal", translation=self._anymal_translation)
-        self._sim_config.apply_articulation_settings("Anymal", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("Anymal"))
+        anymal = Spotmicro(prim_path=self.default_zero_env_path + "/spotmicroai", 
+                           name="Spotmicro", 
+                           translation=self._anymal_translation)
+        self._sim_config.apply_articulation_settings("Spotmicro", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("Spotmicro"))
 
         # Configure joint properties
         joint_paths = []
