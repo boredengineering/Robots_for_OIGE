@@ -27,8 +27,8 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from omniisaacgymenvs.tasks.base.rl_task import RLTask
-from omniisaacgymenvs.robots.articulations.spot import Spot
-from omniisaacgymenvs.robots.articulations.views.spot_view import SpotView
+from omniisaacgymenvs.robots.articulations.go1 import Go1
+from omniisaacgymenvs.robots.articulations.views.go1_view import Go1View
 from omniisaacgymenvs.tasks.utils.usd_utils import set_drive
 
 from omni.isaac.core.utils.prims import get_prim_at_path
@@ -40,7 +40,7 @@ import torch
 import math
 
 
-class SpotTask(RLTask):
+class Go1Task(RLTask):
     def __init__(
         self,
         name,
@@ -107,7 +107,8 @@ class SpotTask(RLTask):
     def set_up_scene(self, scene) -> None:
         self.get_anymal()
         super().set_up_scene(scene)
-        self._anymals = SpotView(prim_paths_expr="/World/envs/.*/anymal", name="anymalview")
+        self._anymals = Go1View(prim_paths_expr="/World/envs/.*/go1", 
+                                 name="go1view")
         scene.add(self._anymals)
         scene.add(self._anymals._knees)
         scene.add(self._anymals._base)
@@ -115,8 +116,10 @@ class SpotTask(RLTask):
         return
 
     def get_anymal(self):
-        anymal = Spot(prim_path=self.default_zero_env_path + "/anymal", name="Anymal", translation=self._anymal_translation)
-        self._sim_config.apply_articulation_settings("Anymal", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("Anymal"))
+        anymal = Go1(prim_path=self.default_zero_env_path + "/go1", 
+                      name="Go1", 
+                      translation=self._anymal_translation)
+        self._sim_config.apply_articulation_settings("Go1", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("Go1"))
 
         # Configure joint properties
         joint_paths = []

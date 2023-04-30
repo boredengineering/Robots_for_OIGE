@@ -46,8 +46,8 @@ def initialize_task(config, env, init_sim=True):
     from omniisaacgymenvs.tasks.crazyflie import CrazyflieTask
 
     # Add the task python script for the task
-    from omniisaacgymenvs.tasks.spot import SpotTask
-    from omniisaacgymenvs.tasks.spot_terrain import SpotTerrainTask
+    from omniisaacgymenvs.tasks.go1 import Go1Task
+    from omniisaacgymenvs.tasks.go1_terrain import Go1TerrainTask
     
     # Mappings from strings to environments
     task_map = {
@@ -66,8 +66,8 @@ def initialize_task(config, env, init_sim=True):
         "ShadowHand": ShadowHandTask,
         "ShadowHandOpenAI_FF": ShadowHandTask,
         "ShadowHandOpenAI_LSTM": ShadowHandTask,
-        "Spot": SpotTask,
-        "SpotTerrain": SpotTerrainTask
+        "Go1": Go1Task,
+        "Go1Terrain": Go1TerrainTask
     }
 
     cfg = sim_config.config

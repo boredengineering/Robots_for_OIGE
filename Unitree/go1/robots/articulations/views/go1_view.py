@@ -32,11 +32,11 @@ from omni.isaac.core.articulations import ArticulationView
 from omni.isaac.core.prims import RigidPrimView
 
 
-class SpotView(ArticulationView):
+class Go1View(ArticulationView):
     def __init__(
         self,
         prim_paths_expr: str,
-        name: Optional[str] = "SpotView",
+        name: Optional[str] = "Go1View",
         track_contact_forces=False,
         prepare_contact_sensors=False
     ) -> None:

@@ -39,11 +39,11 @@ import torch
 
 from pxr import PhysxSchema
 
-class Spot(Robot):
+class B1(Robot):
     def __init__(
         self,
         prim_path: str,
-        name: Optional[str] = "Spot",
+        name: Optional[str] = "B1",
         usd_path: Optional[str] = None,
         translation: Optional[np.ndarray] = None,
         orientation: Optional[np.ndarray] = None,

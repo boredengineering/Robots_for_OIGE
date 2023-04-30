@@ -1,5 +1,5 @@
 # used to create the object
-name: Spot
+name: B1
 
 physics_engine: ${..physics_engine}
 
