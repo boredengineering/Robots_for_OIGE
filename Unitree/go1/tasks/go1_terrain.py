@@ -215,10 +215,10 @@ class Go1TerrainTask(RLTask):
         anymal_orientation = torch.tensor([1.0, 0.0, 0.0, 0.0])
         anymal = Go1(prim_path=self.default_zero_env_path + "/go1", 
                         name="go1",
-                        usd_path="<more path here>/openUSD_assets/UnitreeRobotics/go1/go1.usd",
+                        usd_path="E:/Bored Engineer Github/Bored Engineer/Robots_for_Omniverse/openUSD_assets/UnitreeRobotics/go1/go1.usd",
                         translation=anymal_translation, 
                         orientation=anymal_orientation,)
-        self._sim_config.apply_articulation_settings("spot", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("spot"))
+        self._sim_config.apply_articulation_settings("go1", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("go1"))
         anymal.set_anymal_properties(self._stage, anymal.prim)
         anymal.prepare_contacts(self._stage, anymal.prim)
 

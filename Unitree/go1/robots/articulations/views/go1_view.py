@@ -48,9 +48,9 @@ class Go1View(ArticulationView):
             name=name,
             reset_xform_properties=False
         )
-        self._knees = RigidPrimView(prim_paths_expr="/World/envs/.*/spot/.*_THIGH",
+        self._knees = RigidPrimView(prim_paths_expr="/World/envs/.*/go1/.*_THIGH",
             name="knees_view", reset_xform_properties=False, track_contact_forces=track_contact_forces, prepare_contact_sensors=prepare_contact_sensors)
-        self._base = RigidPrimView(prim_paths_expr="/World/envs/.*/spot/base",
+        self._base = RigidPrimView(prim_paths_expr="/World/envs/.*/go1/base",
             name="base_view", reset_xform_properties=False, track_contact_forces=track_contact_forces, prepare_contact_sensors=prepare_contact_sensors)
 
     def get_knee_transforms(self):

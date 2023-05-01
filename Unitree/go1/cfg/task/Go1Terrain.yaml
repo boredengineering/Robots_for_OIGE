@@ -1,7 +1,7 @@
 name: Go1Terrain
 
 physics_engine: ${..physics_engine}
-
+# 2048
 env:
   numEnvs: ${resolve_default:2048,${...num_envs}}
   numObservations: 188
