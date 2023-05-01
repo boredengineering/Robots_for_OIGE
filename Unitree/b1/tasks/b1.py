@@ -96,7 +96,7 @@ class B1Task(RLTask):
             self.rew_scales[key] *= self.dt
 
         self._num_envs = self._task_cfg["env"]["numEnvs"]
-        self._anymal_translation = torch.tensor([0.0, 0.0, 0.62])
+        self._anymal_translation = torch.tensor([0.0, 0.0, 0.75])
         self._env_spacing = self._task_cfg["env"]["envSpacing"]
         self._num_observations = 48
         self._num_actions = 12
@@ -117,7 +117,8 @@ class B1Task(RLTask):
 
     def get_anymal(self):
         anymal = B1(prim_path=self.default_zero_env_path + "/b1", 
-                    name="B1", 
+                    name="B1",
+                    usd_path="E:\Bored Engineer Github\Bored Engineer\Robots_for_Omniverse\openUSD_assets\UnitreeRobotics\b1\b1.usd", 
                     translation=self._anymal_translation)
         self._sim_config.apply_articulation_settings("B1", get_prim_at_path(anymal.prim_path), self._sim_config.parse_actor_config("B1"))
 
